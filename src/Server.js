@@ -3,12 +3,15 @@ import RegistrosRotas from './routes/RegistrosRotas.js'
 import globalMiddleware from './middleware/globalMiddleware.js'
 
 const app = express()
-const port = process.env.PORT
-const host = process.env.host
+// define porta e host
+const port = process.env.PORT || 3000
+const host = process.env.HOST || `0.0.0.0`
 
+// middlewares
 app.use(globalMiddleware.cors)
 app.use(express.json()) // sem isso o req.body vem vazio
 
+// rota
 app.get('/' ,(req, res) =>{ 
     res.status(200).json({
         system: 'Cowlabs',
@@ -16,8 +19,15 @@ app.get('/' ,(req, res) =>{
     })
 })
 
+// main routes
 app.use(RegistrosRotas)
 
-app.listen(port, host, () => {
-    console.log(` Servidor rodando em uma porta ${port} `)
-})
+
+// Só roda listen em ambiente local
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(port, host, () => {
+    console.log(`Servidor rodando em http://${host}:${port}`)
+  })
+}
+
+export default app
