@@ -72,6 +72,7 @@ const UsersRepo = {
   async readAll() {
     try {
       const { Registros } = await loadData()
+      console.log(Registros)
       return Registros
     } catch (error) {
       console.error('Erro em readAll:', error)
