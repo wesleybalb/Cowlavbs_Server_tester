@@ -3,7 +3,7 @@
   "version": 2,
   "functions": {
     "api/server.js": {
-      "runtime": "nodejs18.x"
+      "runtime": "@vercel/node@2.0.0"
     }
   },
   "rewrites": [
