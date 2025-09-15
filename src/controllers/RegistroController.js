@@ -4,6 +4,12 @@ import RegistroRepository from '../repositories/RegistroRepository.js'
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
 const RegistroController = {
+
+    async getAllReg(req,res){
+        const allReg = await RegistroRepository.readAll();
+        res.status(200).json(allReg)
+    },
+
     async registro(req, res) {
         try {
             console.log('Recebido pedido de registro:', req.body)
