@@ -1,4 +1,4 @@
-import Registros from '../database/Registros.json' with { type: 'json' };
+import Registros from '../database/Registros.json' assert { type: 'json' };
 
 
 const users = Registros.map((u, id) => ({
